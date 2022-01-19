@@ -9,16 +9,13 @@
     	<div class="row justify-content-center">
     		<div class="col-md-7">
     			<article class="card">
-    			<img class="card-img-top mb-2" src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e0245bb4e87077312cc3d102e68c1efd&auto=format&fit=crop&w=735&q=80" alt="Card image">
+    			<img class="card-img-top mb-2" src="{{ postview.image.url }}"
+					 alt="Card image">
     			<div class="card-body">
     				<h1 class="card-title display-4">
-    				Sushi Rolls </h1>
+    				{{ postview.title }} </h1>
     				<ul>
-    					<li>5 cups short-grain sushi rice</li>
-    					<li>6 cups water</li>
-    					<li>1/2 cup rice vinegar</li>
-    					<li>2 tablespoons sugar</li>
-    					<li>A teaspoon of salt</li>
+    					<li>{{ postview.text }}</li>
     				</ul>
     				<small class="d-block"><a class="btn btn-sm btn-gray200" href="#"><i class="fa fa-external-link"></i> Visit Website</a></small>
     				<!-- Begin Comments -replace demowebsite with your own id
@@ -56,7 +53,7 @@
     				<div class="overlay">
     					<h2 class="card-title title">{{p.title}}</h2>
     					<div class="more">
-    						<a href="post.html">
+    						<a href="{{ post.get_absolute_url }}">
     						<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> More </a>
     					</div>
     				</div>

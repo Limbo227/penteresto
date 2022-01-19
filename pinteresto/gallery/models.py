@@ -4,6 +4,9 @@ from django.urls import reverse
 
 
 class Blog(models.Model):
+    views = models.PositiveIntegerField(
+        verbose_name='Просмотры', 
+        default=0)
     title = models.CharField(
         max_length=160,
         verbose_name='Заголовок',
@@ -28,6 +31,10 @@ class Blog(models.Model):
         "Category",
         on_delete=models.DO_NOTHING,
         verbose_name='Категория')
+    slug = models.SlugField(
+        max_length=255,
+        verbose_name='Url',
+        unique=True)
 
     class Meta:
         verbose_name = 'Блог'
@@ -36,6 +43,9 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'slug':self.slug})
 
 
 class Category(models.Model):

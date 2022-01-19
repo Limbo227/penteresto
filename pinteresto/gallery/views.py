@@ -1,11 +1,24 @@
 from django.shortcuts import render
 from .models import *
+from django.views.generic import ListView, DetailView
+from django.db.models import F
+
 
 # Create your views here.
-def index(request):
-    posts = Blog.objects.all()
-    return render(request, 'gallery/index.html', {'posts':posts})
+class Index(ListView):
+    model = Blog
+    context_object_name = 'posts'
+    template_name = 'gallery/index.html'
 
-def post(request, id):
-    post = Blog.objects.get(id=id)
-    return render(request, 'gallery/post.html', {'post':post})
+
+class PostView(DetailView):
+    model = Blog
+    context_object_name = 'postview'
+    template_name = 'gallery/post.html'
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     self.object.views = F('views') + 1
+    #     self.object.save()
+    #     self.object.refresh_from_db()
+    #     return context
